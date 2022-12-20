@@ -1,0 +1,48 @@
+<html>
+    <head>
+    <title>User Registraion</title>
+        <style>
+            #container 
+            {
+                margin: 0px auto;
+	            width: 500px;
+	            height: 375px;
+                border-radius: 25px;
+	            border: 10px #333 solid;
+            }
+            #canva 
+            {
+                margin: 0px auto;
+	            width: 500px;
+	            height: 375px;
+                border-radius: 25px;
+	            border: 5px rgb(44, 200, 211) solid;
+            }
+            #videoElement 
+            {
+                width: 500px;
+	            height: 375px;
+                border-radius: 15px;
+	            background-color: #666;
+            }
+        </style>
+    </head>
+    <body>
+        <form name="frmUser" method="post" action="/signup" align="center">
+            <h3 align="center">Enter Login Details</h3>
+            
+            Username:<br>
+            <input type="text" name="suname"><br>
+            Password:<br>
+            <input type="password" name="spwd"><br>
+            Name:<br>
+            <input type="text" name="snname"><br> 
+            <br><br>
+            <input type="submit" name="submit" value="Submit">
+            <input type="reset">
+        </form>
+        <center>{{error1}}</center>
+
+
+    </body>
+</html>

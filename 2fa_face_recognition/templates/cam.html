@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <style>
+        .paa
+        {
+            position:absolute;
+            top: 100px;
+            border-radius: 25px; 
+             box-shadow: 0px 0px 20px 0px green,inset 0px 0px 20px 0px green; 
+            
+        }
+        .but
+        {
+            position:absolute;
+            top:625px;
+            left:650px;
+            border-radius:20px;
+             padding:24px 60px;
+             font-size:24px;
+             font-family:Copperplate, Papyrus, fantasy;
+             background-color:black;
+             border-color:green;
+             box-shadow: 0px 0px 20px 0px green,inset 0px 0px 20px 0px green;
+             color: green;
+        }
+        .but:hover
+        {
+            position:absolute;
+            color:black;
+            border-color:black;
+            background:green;
+            box-shadow: 0px 0px 20px 0px black,inset 0px 0px 20px 0px black;
+        }
+        h3
+        {
+            position:absolute;
+            color: green;
+            font-family:Copperplate, Papyrus, fantasy;
+        }
+        .container
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+
+    <script type="text/javascript" src="{{ url_for('static',filename='cavas_background.js') }}" defer></script>
+
+    </head>
+
+  <body style="background-color:black;margin: 0%;padding: 0%;overflow: hidden;">
+    <div class="container">
+        <h3 style="top:10px">Recognizing face</h3>
+        <img class="paa" src="{{ url_for('vfeed') }}">
+        <a href="{{url_for('logout')}}"><button class="but">Log out</button></a>
+    </div>
+    <canvas id="canva_background" style=" z-index: -20;"></canvas>
+    </body>
+</html>

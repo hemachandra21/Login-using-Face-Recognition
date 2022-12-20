@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Display Webcam Stream</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+ 
+        <style>
+            *{
+            text-align:center;
+            }
+            #container 
+            {
+             margin: 0px 10px;
+             width: 500px;
+             height: 375px;
+             border-radius: 25px;
+             
+            }
+            #canva 
+            {
+             margin: 0px 10px;
+             width: 500px;
+             height: 375px;
+             background-color: rgba(255,255,255,0.1);
+             backdrop-filter: blur(5px);
+             border-radius: 25px; 
+             box-shadow: 0px 0px 20px 0px green,inset 0px 0px 20px 0px green;          
+             border: 10px green solid;
+            }
+             #videoElement 
+            {
+             width: 500px;
+             height: 375px;
+             border-radius: 25px;
+             border: 10px green solid;
+             box-shadow: 0px 0px 20px 0px green,inset 0px 0px 20px 0px green;
+             background-color: black;      
+            }
+            .butt
+            {
+            position:absolute;
+             border-radius:20px;
+             padding:24px 60px;
+             font-size:24px;
+             font-family:Copperplate, Papyrus, fantasy;
+             background-color:black;
+             border-color:green;
+             box-shadow: 0px 0px 20px 0px green,inset 0px 0px 20px 0px green;
+             color: green;
+            }
+            .butt:hover{
+             background-color:green;
+             color:black;
+             border-color:blacssk;
+            }
+            .g {
+              display: grid;
+              grid-template-columns: auto auto auto;
+              margin-left:100px;
+              position:absolute;
+              top:8.0rem;
+              left:7.5%;
+              
+              padding: 10px;
+              text-align:center;
+              align-content: center;
+            }
+            .g1 
+            {
+                position:absolute;
+              font-size: 30px;
+              text-align: center;
+            }
+            </style>
+            <script type="text/javascript" src="{{ url_for('static',filename='vanillatilt.js') }}" defer></script>
+            <script type="text/javascript" src="{{ url_for('static',filename='cavas_background.js') }}" defer></script>
+    </head>
+ 
+    <body style="background-color:black;display: flex;margin: 0%;padding: 0%;overflow: hidden;">
+        
+        <center>
+        {% for message in get_flashed_messages() %}
+            {{ message }}
+        {% endfor %}
+        <div class="g">
+        <div id="container" class="g1" style="left:0px">
+            <div class="your-element" data-tilt data-tilt-max="50" data-tilt-speed="100" data-tilt-perspective="500">
+            <video autoplay="true" id="videoElement"></video></div><br> 
+            <button class="butt" id="capture" style="left: 25%;align-items: center;">capture</button><br><br>
+            </div>
+            <div class="g1" style="left:600px">
+                <div class="your-element" data-tilt data-tilt-max="50" data-tilt-speed="100" data-tilt-perspective="500">
+                <canvas id="canva" name="upic" width="500" height="375"></canvas></div>
+                <br>
+            <button class="butt" style="left:25%" onclick="senddata()">submit</button><br>
+
+            <p style="color: rgb(255, 255, 255);">{{ statuso }}</p>
+        </div>
+        <br><br>
+       
+        </div>
+        <a href="{{url_for('logoutr')}}"><button class="butt" style="bottom:0%;left:43%;">Log out</button></a>
+        
+    </div>
+</center>
+        <script>
+            var video = document.querySelector("#videoElement");
+            var snap  = document.getElementById("capture");
+
+            if(navigator.mediaDevices.getUserMedia) 
+            {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function (stream){video.srcObject = stream;})
+                    .catch(function (err0r) {console.log("Something went wrong!");});
+            }
+            else
+            {
+                console.log("getUserMedia not supported");
+            }
+
+            var context=canva.getContext('2d');
+            snap.addEventListener("click",function(){
+                context.drawImage(video,0,0,500,375);
+                
+            });
+            
+            function senddata()
+            {
+                let canvas = document.getElementById("canva");
+                let image = canvas.toDataURL();
+
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("POST", "{{ url_for('camreg') }}", true);
+                xhttp. setRequestHeader( "Content-type" , "application/x-www-form-urlencoded " ) ;
+                xhttp.onload = function() { aleart(this.response)}
+                
+                sendimg=JSON.stringify({image});
+                if (sendimg)
+                {
+                    if(confirm("Registerd successfully go back and signin"))
+                    {
+                        // window.location.href="{{ url_for('static',filename='index.html') }}"
+                        window.location.href="{{ url_for('index') }}"
+                    }
+                
+                    console.log('sent')
+                }
+                console.log(image);
+
+                xhttp.send(sendimg);
+
+                // $.ajax({
+                // type: "POST",
+                // url: "{{ url_for('camreg') }}",
+                // contentType: 'application/json;charset=UTF-8',
+                // data:{
+                //     imageBase64: image
+                // }
+                // }).done(function() {
+                // console.log('sent');
+                // });
+
+                console.log(sendimg);
+
+            }
+
+        </script>
+        <canvas id="canva_background"></canvas>
+    </body>
+</html>

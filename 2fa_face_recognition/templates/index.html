@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static',filename='face-scan.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='Front_Style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='Title.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+
+    <!-- <script src="/Landing Page/JavaScript/canvas.js" defer></script> -->
+    <script src="{{ url_for('static',filename='cavas_background.js') }}" defer></script>
+    <script src="{{ url_for('static',filename='script.js') }}" defer></script>
+    <title>Cryptic Face</title>
+</head>
+<body>
+
+    <div class="tubelight">
+        <div class="first-part">
+            <span>C</span>
+            <span>r</span>
+            <span>y</span>
+            <span>p</span>
+            <span>t</span>
+            <span>i</span>
+            <span>c</span>
+        </div>
+        <div class="second-part">
+            <span>F</span>
+            <span>a</span>
+            <span>c</span>
+            <span>e</span>
+        </div>
+      </div>
+    
+    <div class="contain">
+        <div class="static-txt">Created By</div>
+        <ul class="dynamic-txt">
+            <li><span>Arshad Suhale</span></li>
+            <li><span>Hathibelagal Pranav</span></li>
+            <li><span>Hema Chandra</span></li>
+        </ul>
+    </div>
+
+    <div class="container">
+    <img src="{{ url_for('static',filename='Logo_Dark.png') }}" class="Logo" alt="Logo">
+
+    <button class="toggle-login">Login</button>
+
+    <div class="wrapper">
+        <div class="form-wrapper sign-in">
+            <!-- <a href="#" class="close"><img src="/Landing Page/Resources/close.png" alt="X_Mark"></a> -->
+            <a href="#" class="close"><i class="fa-solid fa-xmark"></i> </a>
+            <form name="frmUser" method="post" action="/signin">
+                <h2>Login</h2>
+                <div class="input-group">
+                    <input type="text" name="uname" required autocomplete="off">
+                    <label for="">Username</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="pwd" required autocomplete="off">
+                    <label for="">Password</label>
+                </div>
+                <button type="submit" class="btn">Click Me To Login!</button>
+                <div class="sign-link">
+                    <p>{{error}}</p>
+                    <p>Don't Have an Account? <a href="#" class="SignUp-link">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-wrapper sign-up">
+            <!-- <a href="#" class="close"><i class="fa-solid fa-xmark"></i> </a> -->
+            <form name="frmUser" method="post" action="/signup" >
+                <h2>Sign Up</h2>
+                <div class="input-group">
+                    <input type="text" name="suname" required autocomplete="off">
+                    <label for="">Username</label>
+                </div>
+                <div class="input-group">
+                    <input type="name" name="snname" required autocomplete="off">
+                    <label for="">name</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="spwd" required autocomplete="off">
+                    <label for="">Password</label>
+                </div>
+                <button type="submit" class="btn">Click Me To Sign Up!</button>
+                <div class="sign-link">
+                    <p>{{error}}</p>
+                    <p>Already Have an Account? <a href="#" class="SignIn-link">Sign In</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="bg"></div>
+        <span style="--i:10"></span>
+        <span style="--i:9"></span>
+        <span style="--i:8"></span>
+        <span style="--i:7"></span>
+        <span style="--i:6"></span>
+        <span style="--i:5"></span>
+        <span style="--i:4"></span>
+        <span style="--i:3"></span>
+        <span style="--i:2"></span>
+        <span style="--i:1"></span>
+
+    </div>
+</div>
+
+    <!-- <canvas id="canvas1">    </canvas> -->
+    <canvas id="canva_background"></canvas>
+
+    
+</body>
+</html>
